@@ -1,9 +1,19 @@
 import Router from 'express';
 
-import { helloWorld } from '../controllers/posts';
+import {
+  fetchPosts,
+  fetchPostById,
+  createPost,
+  updatePost,
+  deletePost,
+} from '../controllers/posts';
 
 const router = Router();
 
-router.get('/', helloWorld);
+router.get('/', fetchPosts);
+router.get('/:id', fetchPostById);
+router.post('/', createPost);
+router.put('/:id', updatePost);
+router.delete('/:id', deletePost);
 
 export default router;

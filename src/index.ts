@@ -3,8 +3,8 @@ import express from 'express';
 import postRoutes from './routes/posts';
 
 const app = express();
-app.use(express.json());
 
+app.use(express.json());
 app.use('/posts', postRoutes);
 
 app.listen(3000, () => {
