@@ -21,7 +21,7 @@ export const createPost: RequestHandler = (req, res) => {
   const newPost = new Post(id, author, content);
 
   POSTS.push(newPost);
-  res.status(400).send({ message: 'Post Created!', newPost });
+  res.status(201).send({ message: 'Post Created!', newPost });
 };
 
 export const updatePost: RequestHandler<{ id: string }> = (req, res) => {
@@ -33,11 +33,10 @@ export const updatePost: RequestHandler<{ id: string }> = (req, res) => {
   }
 
   POSTS[postIndex] = new Post(POSTS[postIndex].id, author, content);
-  res.status(400).send({ message: 'Post Updated!', post: POSTS[postIndex] });
+  res.status(200).send({ message: 'Post Updated!', post: POSTS[postIndex] });
 };
 
 export const deletePost: RequestHandler<{ id: string }> = (req, res) => {
-  console.log(req, res);
   const { id } = req.params;
   const postIndex = POSTS.findIndex((post) => post.id === id);
   if (postIndex < 0) {
@@ -45,5 +44,5 @@ export const deletePost: RequestHandler<{ id: string }> = (req, res) => {
   }
 
   POSTS.splice(postIndex, 1);
-  res.status(400).send({ message: 'Post Deleted!' });
+  res.status(200).send({ message: 'Post Deleted!' });
 };
