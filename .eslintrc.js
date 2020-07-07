@@ -1,8 +1,10 @@
 module.exports = {
-  env: {
-    browser: true,
-    commonjs: true,
-    es2020: true,
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
   extends: [
     'eslint:recommended',
@@ -15,17 +17,21 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 11,
+    sourceType: 'module',
   },
   plugins: ['@typescript-eslint'],
   rules: {
+    'import/extensions': [
+      'error',
+      'ignorePackages',
+      {
+        js: 'never',
+        jsx: 'never',
+        ts: 'never',
+        tsx: 'never',
+      },
+    ],
     'prettier/prettier': 'warn',
     'no-console': 'off',
-  },
-  settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      },
-    },
   },
 };
